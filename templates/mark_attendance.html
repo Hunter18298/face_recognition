@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+</head>
+<body>
+    <h1>Mark Attendance</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture">Capture</button>
+    <canvas id="canvas" width="640" height="480" hidden></canvas>
+
+    <script>
+        let video = document.getElementById('video');
+        let canvas = document.getElementById('canvas');
+        let context = canvas.getContext('2d');
+        let captureButton = document.getElementById('capture');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => video.srcObject = stream)
+            .catch(console.error);
+
+        captureButton.addEventListener('click', function() {
+            context.drawImage(video, 0, 0, 640, 480); // Draw the video frame to the canvas
+            video.srcObject.getTracks().forEach(track => track.stop()); // Stop the camera
+            sendImageToServer();
+        });
+
+        function sendImageToServer() {
+            canvas.toBlob(function(blob) {
+                let formData = new FormData();
+                formData.append('image', blob, 'capture.jpg');
+                fetch('/mark_attendance', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json()) // Expecting JSON response
+                .then(data => {
+                    alert(data.message || data.error); // Display message from server
+                })
+                .catch(console.error);
+            }, 'image/jpeg');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Employee</h5>
+                        <p class="card-text">Click below to add a new employee to the system.</p>
+                        <a href="/add_employee" class="btn btn-primary">Add Employee</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Attendance</h5>
+                        <p class="card-text">Click below to view attendance records.</p>
+                        <a href="/view_attendance" class="btn btn-primary">View Attendance</a>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mark Attendance</h5>
+                        <p class="card-text">Click below to mark attendance for employees.</p>
+                        <a href="/mark_attendance" class="btn btn-primary">Mark Attendance</a>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Employees</h5>
+                        <p class="card-text">Click below to view Employees records.</p>
+                <a href="/view_employees" class="btn btn-primary">View Employees</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
